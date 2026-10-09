@@ -1,0 +1,45 @@
+import pandas as pd
+import numpy as np
+
+# 1. Simulate Enterprise Database Extraction (SQL-like data loading)
+np.random.seed(42)
+n_records = 300
+
+df_shipments = pd.DataFrame({
+    'Shipment_ID': [f"SHP-{i:05d}" for i in range(2001, 2001 + n_records)],
+    'Hub_Region': np.random.choice(['North Hub', 'South Hub', 'East Hub', 'West Hub', 'Central Hub'], size=n_records),
+    'Vehicle_Type': np.random.choice(['Light EV Van', 'Medium Duty Truck', 'Heavy Freight Liner'], size=n_records, p=[0.45, 0.35, 0.20]),
+    'Demand_Kg': np.random.randint(150, 5000, size=n_records),
+    'Distance_Km': np.random.randint(10, 400, size=n_records),
+    'Priority': np.random.choice(['Standard', 'Express', 'Critical Pharma'], size=n_records, p=[0.65, 0.25, 0.10])
+})
+
+# 2. NumPy Vectorized Calculations (High-Performance Operations)
+distances = df_shipments['Distance_Km'].to_numpy()
+demand = df_shipments['Demand_Kg'].to_numpy()
+
+# Apply conditional multipliers via NumPy
+fuel_rates = np.select(
+    [
+        df_shipments['Vehicle_Type'] == 'Light EV Van',
+        df_shipments['Vehicle_Type'] == 'Medium Duty Truck',
+        df_shipments['Vehicle_Type'] == 'Heavy Freight Liner'
+    ],
+    [0.12, 0.28, 0.45]
+)
+
+df_shipments['Total_Fuel_Ltr'] = np.round(distances * fuel_rates, 2)
+df_shipments['Driver_Cost_USD'] = np.round(distances * 1.75 + demand * 0.02, 2)
+df_shipments['Carbon_Emission_Kg'] = np.round(df_shipments['Total_Fuel_Ltr'] * 2.68, 2)
+
+# 3. SQL-like Groupby Aggregations (Pandas Analytics Engine)
+hub_summary = df_shipments.groupby(['Hub_Region', 'Vehicle_Type']).agg(
+    Total_Shipments=('Shipment_ID', 'count'),
+    Total_Demand_Kg=('Demand_Kg', 'sum'),
+    Avg_Distance_Km=('Distance_Km', 'mean'),
+    Total_Cost_USD=('Driver_Cost_USD', 'sum'),
+    Total_Carbon_Kg=('Carbon_Emission_Kg', 'sum')
+).reset_index()
+
+print("--- Logistics Hub Performance Summary ---")
+print(hub_summary.head(10))
