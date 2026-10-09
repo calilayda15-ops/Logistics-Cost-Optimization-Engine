@@ -1,0 +1,13 @@
+Logistics Performance and Cost Optimization Report
+1. Executive Summary
+This report ensures that raw data obtained from our logistics operations (shipment counts, cargo quantities, distances, and costs) are transformed into strategic KPIs through automated analytical filters. The objective is to reduce the fleet's cost burden, keep the carbon footprint under control, and intervene in the right areas by identifying operational inefficiencies.
+2. What Does the Code Tell Us? (Current State Analysis)
+When we group the data by hub regions (Hub_Region) and vehicle types (Vehicle_Type) using Python/Pandas automation and visualization tools, we encounter the following critical realities:
+Load and Shipment Density: We observe that shipment volumes and total transported kilograms (Total_Demand_Kg) using Light EV Vans in the North Hub and East Hub regions are considerably higher compared to other hubs.
+Cost Centers: As indicated by the charts and console tables, the largest share of our logistics costs stems from Light EV Van operations in the West Hub region, which peaked at over 17,000 USD as the highest cost center.
+Environmental Impact (Green Logistics): Carbon emission amounts (Total_Carbon_Kg) for each hub region have been calculated, reporting which vehicle combinations place a heavier burden on the environment in line with our sustainability targets.
+3. Where Should We Intervene? (Action Plan and Recommendations)
+Based on the data obtained from this analysis, we must urgently implement the following operational interventions:
+Cost Optimization in West Hub: Route planning for light commercial vehicle/van operations in the West Hub, where costs peak, should be reviewed; capacity utilization rates must be increased and empty running minimized.
+Capacity and Vehicle Balancing: Vehicle type optimization should be implemented against the concentrated demand in North and East Hubs to balance the workload between medium/heavy-duty trucks and vans.
+Implementation of Cost-Reducing Simulations: The 12% route efficiency target simulated by our code (e.g., integration of AI-based route optimization software) should be applied directly in the field to achieve thousands of dollars in savings on total fleet costs.
