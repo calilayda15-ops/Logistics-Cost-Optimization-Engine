@@ -1,0 +1,24 @@
+--- Logistics Hub Performance Summary ---
+    Hub_Region         Vehicle_Type  Total_Shipments  Total_Demand_Kg  \
+0  Central Hub  Heavy Freight Liner               12            25063   
+1  Central Hub         Light EV Van               21            59155   
+2  Central Hub    Medium Duty Truck               15            33591   
+3     East Hub  Heavy Freight Liner               10            34920   
+4     East Hub         Light EV Van               32            72729   
+5     East Hub    Medium Duty Truck               21            57275   
+6    North Hub  Heavy Freight Liner               16            36283   
+7    North Hub         Light EV Van               33            80983   
+8    North Hub    Medium Duty Truck               20            64882   
+9    South Hub  Heavy Freight Liner               10            25637   
+
+   Avg_Distance_Km  Total_Cost_USD  Total_Carbon_Kg  
+0       162.000000         3903.26          2344.47  
+1       242.761905        10104.60          1639.52  
+2       216.400000         6352.32          2435.79  
+3       232.200000         4761.90          2800.33  
+4       201.593750        12743.83          2074.65  
+5       158.000000         6952.00          2489.84  
+6       170.375000         5496.16          3287.57  
+7       201.606061        13262.41          2139.60  
+8       237.300000         9603.14          3561.41  
+9       127.800000         2749.24          1541.27  
