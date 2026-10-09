@@ -1,0 +1,24 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Set visual style
+sns.set_theme(style="whitegrid")
+
+# Group data for visualization
+hub_summary = df_shipments.groupby(['Hub_Region', 'Vehicle_Type']).agg(
+    Total_Cost_USD=('Driver_Cost_USD', 'sum'),
+    Total_Carbon_Kg=('Carbon_Emission_Kg', 'sum')
+).reset_index()
+
+# Plotting
+plt.figure(figsize=(10, 6))
+sns.barplot(data=hub_summary, x='Hub_Region', y='Total_Cost_USD', hue='Vehicle_Type', palette='viridis')
+plt.title('Total Logistics Cost by Hub Region and Vehicle Type', fontsize=14, fontweight='bold', pad=15)
+plt.xlabel('Hub Region', fontsize=12)
+plt.ylabel('Total Cost (USD)', fontsize=12)
+plt.legend(title='Vehicle Type', bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.tight_layout()
+
+# Save chart image for GitHub README
+plt.savefig('logistics_cost_analysis.png', dpi=300)
+plt.show()
